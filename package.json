@@ -1,0 +1,54 @@
+{
+  "name": "xeo-key-mapper",
+  "version": "1.0.0",
+  "description": "Xeo Studio - lightweight key remapper. Map a simple key to a complex system shortcut. Cross-platform (Windows / macOS / Linux).",
+  "main": "main.js",
+  "author": "Xeo Studio",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --publish never"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@nut-tree-fork/nut-js": "^4.2.6",
+    "electron-store": "^8.1.0",
+    "auto-launch": "^5.0.5"
+  },
+  "devDependencies": {
+    "electron": "^26.2.1",
+    "electron-builder": "^24.6.0"
+  },
+  "optionalDependencies": {
+    "iohook": "0.9.x"
+  },
+  "build": {
+    "appId": "com.xeostudio.keymapper",
+    "productName": "Xeo Key Mapper",
+    "files": [
+      "**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Xeo Studio — Key Mapper</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Favicon مباشرة من Base64 -->
+<link rel="icon" type="image/png" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1NSIgZmlsbD0iI2U1ZjQyYiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjQiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkZpcmEgQ29kZSwgbW9ub3NwYWNlIiBmb250LXNpemU9IjM2IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCI+WDwvdGV4dD48L3N2Zz4=">
+
+<style>
+:root {
+  --primary:#58A6FF;
+  --bg:#1e1e2f;
+  --card:#292b3e;
+  --text:#fff;
+  --accent:#ff5f7e;
+}
+* { box-sizing:border-box; margin:0; padding:0; font-family:'Fira Code',monospace; }
+body { background:var(--bg); color:var(--text); display:flex; flex-direction:column; align-items:center; padding:18px; }
+h1 { color:var(--primary); margin-bottom:14px; text-align:center; }
+#container { width:100%; max-width:760px; display:flex; flex-direction:column; gap:12px; margin-bottom:20px; }
+.shortcut-box { background:var(--card); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); position:relative; }
+.shortcut-box label { font-size:0.85rem; color:#cfd8ff; }
+.shortcut-box input { width:100%; padding:10px; border-radius:8px; border:none; background:#222239; color:var(--text); margin-top:6px; cursor:pointer; }
+.shortcut-box .hint { font-size:0.75rem; color:#aaa; margin-top:4px; }
+button { margin-top:10px; padding:10px 12px; border-radius:8px; border:none; background:var(--primary); color:#fff; cursor:pointer; }
+#addShortcut { margin-top:14px; padding:12px 20px; border-radius:10px; background:var(--primary); }
+.debug { color: orange; padding: 8px; }
+
+#settings { width:100%; max-width:760px; margin-top:20px; background:var(--card); padding:16px; border-radius:10px; }
+#settings h2 { color:var(--primary); margin-bottom:12px; }
+#settings label { display:block; font-size:0.9rem; margin-bottom:8px; cursor:pointer; }
+#settings input[type="checkbox"] { margin-right:6px; }
+#saveSettings { margin-top:12px; padding:10px 16px; border-radius:8px; background:var(--accent); color:#fff; cursor:pointer; border:none; }
+</style>
+</head>
+
+<body>
+  <h1>Xeo Studio — Key Mapper</h1>
+
+  <p style="max-width:760px; text-align:center; font-size:0.85rem; color:#cfd8ff;">
+    💡 How to use: Click a box to start recording keys. Press keys one by one to build the shortcut sequence. 
+    Example: To record Windows+Shift+S, click the box, press Win → Shift → S in order. The shortcut is saved automatically when you click outside the box.
+  </p>
+
+  <!-- Container for shortcuts -->
+  <div id="container"></div>
+  <button id="addShortcut">➕ Add Shortcut</button>
+
+  <!-- Settings section -->
+  <div id="settings">
+    <h2>Settings</h2>
+    <label><input type="checkbox" id="startAtLogin"> Start at login</label>
+    <label><input type="checkbox" id="minimizeToTray"> Minimize to tray on close</label>
+    <label><input type="checkbox" id="startMinimized"> Start minimized</label>
+    <button id="saveSettings">Save Settings</button>
+  </div>
+
+  <div id="status" class="debug" style="display:none"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
